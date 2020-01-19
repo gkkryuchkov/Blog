@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Username:
+  = @user_profile.username
+%p
+  %b Status:
+  = @user_profile.status
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+\|
+= link_to 'Back', user_profiles_path

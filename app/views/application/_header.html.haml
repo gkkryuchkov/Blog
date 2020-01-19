@@ -1,0 +1,20 @@
+%header
+  .nav.navbar.navbar-expand-xl.font-italic.navbar-light.mb-4
+    .container-fluid
+      .navbar-brand.mr-4
+        -#%span= image_tag("mephi_logo.png", :alt => "НИЯУ МИФИ", class: "logo")
+        %span.h3=t('app.title')
+      %button.navbar-toggler{type: "button", data: {toggle: 'collapse', target: '#navbar'}}
+        =fa_icon "bars"
+      #navbar.collapse.navbar-collapse
+        -if @current_user
+          .navbar-nav.mr-auto
+        -if @current_user
+          .navbar-nav.my-1
+            .nav-item.dropdown
+              =link_to ?#, class: 'nav-link dropdown-toggle text-nowrap my-auto h5', data: {toggle: 'dropdown'} do
+                -if session.key?(:zombie)
+                  =fa_icon 'user-secret'
+                =(@current_user.person).fio
+              .dropdown-menu.dropdown-menu-right
+                =link_to t('sessions.logout.btn'), logout_path, class: 'dropdown-item h5'

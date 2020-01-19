@@ -1,0 +1,6 @@
+-if object.errors.present?
+  .alert.alert-danger
+    %h2.alert-heading=t 'helpers.errors.title'
+    %ol.mb-0
+      -object.errors.full_messages.each do |msg|
+        %li=msg
