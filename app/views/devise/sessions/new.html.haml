@@ -1,5 +1,5 @@
 %h2 Log in
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+= simple_form_for(@session, as: session, url: session_path(session)) do |f|
   .form-inputs
     = f.input :email,                       
       required: false,                      

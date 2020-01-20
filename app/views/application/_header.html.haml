@@ -7,14 +7,21 @@
       %button.navbar-toggler{type: "button", data: {toggle: 'collapse', target: '#navbar'}}
         =fa_icon "bars"
       #navbar.collapse.navbar-collapse
-        -if @current_user
+        -if current_user
           .navbar-nav.mr-auto
-        -if @current_user
+        -if current_user
           .navbar-nav.my-1
             .nav-item.dropdown
               =link_to ?#, class: 'nav-link dropdown-toggle text-nowrap my-auto h5', data: {toggle: 'dropdown'} do
                 -if session.key?(:zombie)
                   =fa_icon 'user-secret'
-                =(@current_user.person).fio
+                -if current_user.user_profile.present?
+                  =current_user.user_profile.username
               .dropdown-menu.dropdown-menu-right
-                =link_to t('sessions.logout.btn'), logout_path, class: 'dropdown-item h5'
+                =link_to t('sessions.logout.btn'), destroy_user_session_url, class: 'dropdown-item h5'
+        -else
+          .button-group
+            =link_to new_user_session_url, class: 'btn btn-outline-primary' do
+              =t('helpers.sign_in')
+            =link_to new_user_registration_url, class: 'btn btn-outline-primary' do
+              =t('helpers.sign_up')

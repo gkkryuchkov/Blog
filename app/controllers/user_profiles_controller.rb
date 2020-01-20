@@ -25,7 +25,7 @@ class UserProfilesController < ApplicationController
   # POST /user_profiles.json
   def create
     @user_profile = UserProfile.new(user_profile_params)
-
+    @user_profile.user_id = current_user.id
     respond_to do |format|
       if @user_profile.save
         format.html { redirect_to @user_profile, notice: 'User profile was successfully created.' }

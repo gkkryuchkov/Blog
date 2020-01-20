@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :sections
     resources :user_profiles
     devise_for :users
+    devise_scope :user do
+      get :sign_in, to: 'devise/session#new'
+    end
     root "home_pages#index"
   end
   resources :comments
