@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+    @articles = @articles.where('section_id = ?',params[:section]) if params[:section].present? && params[:section]!=''
+    @articles = @articles.ordering.page(params[:page])
   end
 
   # GET /articles/1
@@ -25,7 +27,8 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    @article.publish_date = Time.now
+    @article.user_profile = current_user.user_profile
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -69,6 +72,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :body)
+      params.require(:article).permit(:title, :description, :body, :section_id,:user_profile_id)
     end
 end

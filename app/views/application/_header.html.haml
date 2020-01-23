@@ -3,25 +3,37 @@
     .container-fluid
       .navbar-brand.mr-4
         -#%span= image_tag("mephi_logo.png", :alt => "НИЯУ МИФИ", class: "logo")
-        %span.h3=t('app.title')
+        =link_to root_path, class: 'h3' do
+          =t('app.title')
+        =current_user.try(:admin?)
       %button.navbar-toggler{type: "button", data: {toggle: 'collapse', target: '#navbar'}}
         =fa_icon "bars"
       #navbar.collapse.navbar-collapse
-        -if current_user
-          .navbar-nav.mr-auto
+        .navbar-nav.mr-auto
+          -if Section.all.any?
+            .nav-item.dropdown
+              =link_to  ?#, class: 'nav-link dropdown-toggle text-nowrap my-auto h5', data: {toggle: 'dropdown'} do
+                =t( 'sections.sections')
+              .dropdown-menu.dropdown-menu-right
+                -Section.all.each do |x|
+                  =link_to x.name,articles_path(section: x.id), class: 'dropdown-item h6'
         -if current_user
           .navbar-nav.my-1
             .nav-item.dropdown
               =link_to ?#, class: 'nav-link dropdown-toggle text-nowrap my-auto h5', data: {toggle: 'dropdown'} do
-                -if session.key?(:zombie)
-                  =fa_icon 'user-secret'
                 -if current_user.user_profile.present?
+                  -if current_user.user_profile.avatar.attached?
+                    %span=image_tag current_user.user_profile.avatar, class: 'icon'
                   =current_user.user_profile.username
+                -else
+                  =current_user.email
               .dropdown-menu.dropdown-menu-right
-                =link_to t('sessions.logout.btn'), destroy_user_session_url, class: 'dropdown-item h5'
+                =link_to t('user_profile.my_account'), current_user.user_profile, class: 'dropdown-item h5'
+                =link_to t('sessions.logout.btn'), destroy_user_session_path,method: :delete,  class: 'dropdown-item h5'
+
         -else
           .button-group
-            =link_to new_user_session_url, class: 'btn btn-outline-primary' do
+            =link_to new_user_session_path, class: 'btn btn-outline-primary' do
               =t('helpers.sign_in')
             =link_to new_user_registration_url, class: 'btn btn-outline-primary' do
               =t('helpers.sign_up')

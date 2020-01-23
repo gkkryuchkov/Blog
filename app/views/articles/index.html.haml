@@ -1,25 +1,13 @@
 %h1 Listing articles
+  
+- @articles.each do |article|
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Body
-      %th
-      %th
-      %th
+  %h3.b=link_to article.title, article
+  %h5= article.description
+  -#= link_to 'Show', article
+  -#= link_to 'Edit', edit_article_path(article)
+  -#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
 
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= article.title
-        %td= article.description
-        %td= article.body
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Article', new_article_path
+-#%br
+=paginate @articles
+-#= link_to 'New Article', new_article_path

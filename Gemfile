@@ -13,7 +13,7 @@ gem 'commonmarker'
 gem 'rails-i18n', '~> 5.1'
 # Use SCSS for stylesheets
 gem 'kaminari'
-
+#gem 'image_processing'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails'

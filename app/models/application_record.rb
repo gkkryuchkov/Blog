@@ -3,5 +3,5 @@ class ApplicationRecord < ActiveRecord::Base
   strip_attributes
   has_paper_trail
   include Pundit
-
+  include Auth
 end

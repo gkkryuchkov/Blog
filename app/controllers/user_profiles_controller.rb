@@ -26,6 +26,7 @@ class UserProfilesController < ApplicationController
   def create
     @user_profile = UserProfile.new(user_profile_params)
     @user_profile.user_id = current_user.id
+    @user_profile.avatar.attach(params[:avatar])
     respond_to do |format|
       if @user_profile.save
         format.html { redirect_to @user_profile, notice: 'User profile was successfully created.' }
@@ -69,6 +70,6 @@ class UserProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:username, :status)
+      params.require(:user_profile).permit(:username, :status, :avatar)
     end
 end

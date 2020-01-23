@@ -1,16 +1,16 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-en:
+ru:
   devise:
     confirmations:
-      confirmed: "Your email address has been successfully confirmed."
-      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
-      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      confirmed: "Ваша электронная почта была успешно подтверждена."
+      send_instructions: "Вы получите электронные письмо с инструкциями для подтверждения электронного адреса в течение нескольких минут."
+      send_paranoid_instructions: "Если ваш электронный адрес присутсвует в нашей базе данных, Вы получите инструкции по его подтверждению в течение нескольких минут."
     failure:
-      already_authenticated: "You are already signed in."
-      inactive: "Your account is not activated yet."
-      invalid: "Invalid %{authentication_keys} or password."
-      locked: "Your account is locked."
+      already_authenticated: "Пользователь уже вошел в аккаунт."
+      inactive: "Ваш аккаунт не активирован."
+      invalid: "Неверное %{authentication_keys} или пароль."
+      locked: "Ваш аккаунт заблокирован."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
       timeout: "Your session expired. Please sign in again to continue."
@@ -64,20 +64,14 @@ en:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
   app:
-    title: "Stacy's blog"
+    title: "Блог Stacy"
   sessions:
     logout:
-      btn: "Log out"
+      btn: "Выход"
   helpers:
-    sign_in: "Sign in"
-    sign_up: "Sign up"
+    sign_in: "Вход"
+    sign_up: "Регистрация"
   user_profile:
-    my_account: "My account"
+    my_account: "Мой аккаунт"
   sections:
-    sections: "Sections"
-  views:
-    pagination:
-      first: "<<"
-      last: ">>"
-      next: ">"
-      previous: "<"
+    sections: "Разделы"
