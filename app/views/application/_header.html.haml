@@ -5,9 +5,8 @@
         -#%span= image_tag("mephi_logo.png", :alt => "НИЯУ МИФИ", class: "logo")
         =link_to root_path, class: 'h3' do
           =t('app.title')
-        =current_user.try(:admin?)
       %button.navbar-toggler{type: "button", data: {toggle: 'collapse', target: '#navbar'}}
-        =fa_icon "bars"
+        =icon 'fas',  "bars"
       #navbar.collapse.navbar-collapse
         .navbar-nav.mr-auto
           -if Section.all.any?
