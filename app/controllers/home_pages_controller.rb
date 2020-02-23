@@ -1,3 +1,5 @@
 class HomePagesController < ApplicationController
-  def index ;end
+  def index
+    redirect_to articles_path
+  end
 end

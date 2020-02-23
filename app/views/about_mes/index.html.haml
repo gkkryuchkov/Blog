@@ -1,0 +1,14 @@
+.row
+  .col-12.col-xl-10
+    %h1.text-center.my-2 About Me
+    .my-2.container
+      = markdown(@about_me.body).html_safe
+    .d-xl-none
+      %h4=t('articles.recommendations')
+      -last_five_articles.each do |article|
+        %h5.b.text-center=link_to article.title, article
+  .d-md-none.d-xl-block.col-xl-2.border-left
+    %h4=t('articles.recommendations')
+    -last_five_articles.each do |article|
+      %h5.b.text-center=link_to article.title, article
+  -#= link_to 'New Article', new_article_path

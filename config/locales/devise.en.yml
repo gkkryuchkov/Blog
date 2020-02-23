@@ -65,12 +65,14 @@ en:
         other: "%{count} errors prohibited this %{resource} from being saved:"
   app:
     title: "Stacy's blog"
+    hack_and_protect: "Hack & Protect"
   sessions:
     logout:
       btn: "Log out"
   helpers:
     sign_in: "Sign in"
     sign_up: "Sign up"
+    about_me: "About me"
   user_profile:
     my_account: "My account"
   sections:
@@ -81,3 +83,13 @@ en:
       last: ">>"
       next: ">"
       previous: "<"
+  articles:
+    recommendations: "Recommendations"
+    feed: "Feed"
+    new: "New article"
+    edit: "Edit article"
+    delete: "Delete article"
+    add_to_favorite: "Add to favorite"
+    remove_from_favorite: "Remove from favorite"
+  comments:
+    new: "New comment"

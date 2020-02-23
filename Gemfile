@@ -9,8 +9,9 @@ gem 'rails', '~> 5.2.3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-gem 'commonmarker'
 gem 'rails-i18n', '~> 5.1'
+gem 'redcarpet'
+gem 'image_processing'
 # Use SCSS for stylesheets
 gem 'kaminari'
 #gem 'image_processing'
@@ -52,7 +53,7 @@ gem 'jquery-validation-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'simple_form'
-gem "pundit"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

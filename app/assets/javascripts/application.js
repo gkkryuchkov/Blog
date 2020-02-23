@@ -24,4 +24,5 @@
 //= require direct_uploads.js
 //= require tempusdominus-bootstrap-4
 //= require twitter/typeahead
+//= require tokenize2.min.js
 //= require_tree .

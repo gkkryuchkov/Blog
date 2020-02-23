@@ -1,4 +1,12 @@
                    Prefix Verb   URI Pattern                                                                              Controller#Action
+                about_mes GET    /about_mes(.:format)                                                                     about_mes#index
+                          POST   /about_mes(.:format)                                                                     about_mes#create
+             new_about_me GET    /about_mes/new(.:format)                                                                 about_mes#new
+            edit_about_me GET    /about_mes/:id/edit(.:format)                                                            about_mes#edit
+                 about_me GET    /about_mes/:id(.:format)                                                                 about_mes#show
+                          PATCH  /about_mes/:id(.:format)                                                                 about_mes#update
+                          PUT    /about_mes/:id(.:format)                                                                 about_mes#update
+                          DELETE /about_mes/:id(.:format)                                                                 about_mes#destroy
                  comments GET    (/:locale)/comments(.:format)                                                            comments#index {:locale=>/ru|en/}
                           POST   (/:locale)/comments(.:format)                                                            comments#create {:locale=>/ru|en/}
               new_comment GET    (/:locale)/comments/new(.:format)                                                        comments#new {:locale=>/ru|en/}
@@ -58,6 +66,8 @@
                           PATCH  /comments/:id(.:format)                                                                  comments#update
                           PUT    /comments/:id(.:format)                                                                  comments#update
                           DELETE /comments/:id(.:format)                                                                  comments#destroy
+     delete_image_article DELETE /articles/:id/delete_image(.:format)                                                     articles#delete_image
+    deliver_image_article GET    /articles/:id/deliver_image(.:format)                                                    articles#deliver_image
                           GET    /articles(.:format)                                                                      articles#index
                           POST   /articles(.:format)                                                                      articles#create
                           GET    /articles/new(.:format)                                                                  articles#new
