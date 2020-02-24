@@ -1,5 +1,4 @@
 .row
-  =current_user.user_profile.favorite_articles.inspect
   .col-12.col-xl-10
     -if current_user.try(:admin?)
       =link_to edit_article_path(@article), class: 'btn btn-success' do
@@ -17,10 +16,9 @@
     %h2.text-center= @article.title
     %h4= @article.description
     =markdown(@article.body).html_safe
-    -#.mt-4
-    -#  %div#comments
-    -#    = render "comments/form", locals: {commentable: @article}
-    -#    = render @comments
+    .mt-4
+      %ul#comments
+        = render partial: "comments/comment", collection: @article.comments
   .d-xl-none
     %h4=t('articles.recommendations')
     .text-center

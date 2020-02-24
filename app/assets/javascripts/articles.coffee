@@ -15,7 +15,7 @@ add_to_favorite = ->
             user_id: user_id
             },
       success:(data) ->
-        alert("Успешно создано")
+        # alert("Успешно создано")
         false
       error:(data) ->
         alert('Ошибка')
@@ -35,7 +35,7 @@ remove_from_favorite = ->
             user_id: user_id
             },
       success:(data) ->
-        alert("Успешно удалено")
+        # alert("Успешно удалено")
         false
       error:(data) ->
         alert('Ошибка')

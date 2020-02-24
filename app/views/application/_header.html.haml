@@ -9,19 +9,23 @@
         =icon 'fas',  "bars"
       #navbar.collapse.navbar-collapse
         .navbar-nav.mr-auto
-          =link_to articles_path, class: 'btn nav-item mx-4' do
+          =link_to articles_path, class: 'btn nav-item mx-3' do
             %span.h5=icon('far', 'newspaper')
             %span.h5=t('articles.feed')
           -if Section.all.any?
             %span.nav-item.dropdown
-              =link_to  ?#, class: 'mx-4 black nav-link dropdown-toggle  my-auto text-center', data: {toggle: 'dropdown'} do
+              =link_to  ?#, class: 'mx-3 black nav-link dropdown-toggle  my-auto text-center', data: {toggle: 'dropdown'} do
                 %span.h5=t( 'sections.sections')
               .dropdown-menu.dropdown-menu-right
                 -Section.all.each do |x|
                   =link_to x.name,articles_path(section: x.id), class: 'dropdown-item h6 text-center'
-          = link_to about_mes_path, class: 'ml-2 btn mx-4' do
+          = link_to about_mes_path, class: 'btn mx-3' do
             %span.h5= t('helpers.about_me')
             %span.h5=icon('fab', 'phoenix-framework')
+          -if current_user
+            =link_to favorite_articles_path, class: 'btn mx-3' do
+              %span.h5= t('articles.favorite_articles')
+              %span.h5=icon('far', 'star')
         -if current_user
           .navbar-nav.my-1
             .nav-item.dropdown.text-center
@@ -36,7 +40,7 @@
                 =link_to current_user.user_profile, class: 'dropdown-item h5' do
                   =icon('far', 'user')
                   =t('user_profile.my_account')
-                =link_to destroy_user_session_path,method: :delete,  class: 'dropdown-item h5' do
+                =link_to destroy_user_session_path, method: :delete,  class: 'dropdown-item h5' do
                   =icon('fas', 'sign-out-alt')
                   =t('sessions.logout.btn')
 

@@ -1,0 +1,9 @@
+%li
+  =comment.content
+
+  = simple_form_for [comment, Comment.new] do |f|
+    =f.input :content, placeholder: t('comment.add_reply')
+    = f.button :submit, 'Reply', class: "btn-info"
+
+  %ul
+    = render partial: 'comments/comment', collection: comment.comments

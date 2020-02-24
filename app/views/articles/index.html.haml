@@ -6,8 +6,10 @@
         =t('articles.new')
     -if params[:section].present? && params[:section] != ''
       %h1.text-center=section_name(params[:section])
+    -elsif @favorite
+      %h1.text-center=t('articles.favorite_articles')
     -else
-      %h1.text-center Articles
+      %h1.text-center=t('articles.articles')
     - @articles.each do |article|
 
       %hr.hr.mb-3

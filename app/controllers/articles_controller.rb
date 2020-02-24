@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @articles = @articles.where('hidden = 0') unless current_user.try(:admin?)
-    @articles = @articles.where('section_id = ?',params[:section]) if params[:section].present? && params[:section]!=''
+    @articles = @articles.where('section_id = ?', params[:section]) if params[:section].present? && params[:section]!=''
     @articles = @articles.ordering.page(params[:page])
   end
 
@@ -33,9 +33,11 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        faormat.js
       end
     end
   end
@@ -82,19 +84,37 @@ class ArticlesController < ApplicationController
 
   def add_to_favorite
     user_profile = User.find(params['user_id']).user_profile
-    Article.find(params['article_id']).favorite_users << user_profile
+    article = Article.find(params['article_id'])
+    article.favorite_users << user_profile unless article.favorite_users.include?(user_profile)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def remove_from_favorite
     user_profile = User.find(params['user_id']).user_profile
     Article.find(params['article_id']).favorite_users.delete(user_profile)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def favorite_articles
+    redirect_to articles_url unless current_user
+    @favorite = true
+    @articles = current_user.user_profile.favorite_articles
+    @articles = @articles.where('hidden = 0') unless current_user.try(:admin?)
+    @articles = @articles.ordering.page(params[:page])
+    respond_to do |format|
+      format.html { render :index }
+    end
   end
 
   private
 
     def permissions
       # authorization
-      unless [:index, :show].include?(action_name.to_sym)
+      unless [:index, :show, :favorite_articles, :add_to_favorite, :remove_from_favorite].include?(action_name.to_sym)
         render_error unless current_user.try(:admin?)
       end
     end

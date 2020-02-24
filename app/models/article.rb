@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user_profile
-  belongs_to :section, optional:true
-  has_many :comments, dependent: :delete_all
+  belongs_to :section, optional: true
+  has_many :comments, as: :commentable
   has_and_belongs_to_many :favorite_users, join_table: 'favorite_articles', class_name: 'UserProfile'
 
   accepts_nested_attributes_for :comments#TODO: доделать

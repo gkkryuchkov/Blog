@@ -2,8 +2,8 @@
 
 one:
   rating: 1
-  comment_body: MyText
+  content: MyText
 
 two:
   rating: 1
-  comment_body: MyText
+  content: MyText
