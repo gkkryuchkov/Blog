@@ -9,7 +9,7 @@ en:
   helpers:
     sign_in: Sign in
     sign_up: Sign up
-    about_me: About me
+    about_mes: About me
   user_profile:
     my_account: My account
   sections:

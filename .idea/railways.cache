@@ -1,12 +1,12 @@
                    Prefix Verb   URI Pattern                                                                              Controller#Action
-                about_mes GET    /about_mes(.:format)                                                                     about_mes#index
-                          POST   /about_mes(.:format)                                                                     about_mes#create
-             new_about_me GET    /about_mes/new(.:format)                                                                 about_mes#new
-            edit_about_me GET    /about_mes/:id/edit(.:format)                                                            about_mes#edit
-                 about_me GET    /about_mes/:id(.:format)                                                                 about_mes#show
-                          PATCH  /about_mes/:id(.:format)                                                                 about_mes#update
-                          PUT    /about_mes/:id(.:format)                                                                 about_mes#update
-                          DELETE /about_mes/:id(.:format)                                                                 about_mes#destroy
+                about_mess GET    /about_mess(.:format)                                                                     about_mess#index
+                          POST   /about_mess(.:format)                                                                     about_mess#create
+             new_about_mes GET    /about_mess/new(.:format)                                                                 about_mess#new
+            edit_about_mes GET    /about_mess/:id/edit(.:format)                                                            about_mess#edit
+                 about_mes GET    /about_mess/:id(.:format)                                                                 about_mess#show
+                          PATCH  /about_mess/:id(.:format)                                                                 about_mess#update
+                          PUT    /about_mess/:id(.:format)                                                                 about_mess#update
+                          DELETE /about_mess/:id(.:format)                                                                 about_mess#destroy
                  comments GET    (/:locale)/comments(.:format)                                                            comments#index {:locale=>/ru|en/}
                           POST   (/:locale)/comments(.:format)                                                            comments#create {:locale=>/ru|en/}
               new_comment GET    (/:locale)/comments/new(.:format)                                                        comments#new {:locale=>/ru|en/}

@@ -1,17 +1,17 @@
 require "application_system_test_case"
 
-class AboutMesTest < ApplicationSystemTestCase
+class AboutMeTest < ApplicationSystemTestCase
   setup do
-    @about_me = about_mes(:one)
+    @about_mes = about_mess(:one)
   end
 
   test "visiting the index" do
-    visit about_mes_url
+    visit about_mess_url
     assert_selector "h1", text: "About Mes"
   end
 
   test "creating a About me" do
-    visit about_mes_url
+    visit about_mess_url
     click_on "New About Me"
 
     click_on "Create About me"
@@ -21,7 +21,7 @@ class AboutMesTest < ApplicationSystemTestCase
   end
 
   test "updating a About me" do
-    visit about_mes_url
+    visit about_mess_url
     click_on "Edit", match: :first
 
     click_on "Update About me"
@@ -31,7 +31,7 @@ class AboutMesTest < ApplicationSystemTestCase
   end
 
   test "destroying a About me" do
-    visit about_mes_url
+    visit about_mess_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end

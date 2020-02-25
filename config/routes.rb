@@ -4,14 +4,18 @@ Rails.application.routes.draw do
       request.xhr?
     end
   end
-  resources :about_mes
+  resources :about_mes do
+    member do
+      get 'about' => 'about_mes#index'
+    end
+  end
 
   resources :comments do
     resources :comments
   end
   resources :sections
   resources :user_profiles
-  devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+  devise_for :users
   root "home_pages#index"
   resources :articles do
     resources :comments

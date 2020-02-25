@@ -1,1 +1,1 @@
-json.partial! "about_mes/about_me", about_me: @about_me
+json.partial! "about_mess/about_mes", about_mes: @about_mes

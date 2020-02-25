@@ -1,0 +1,2 @@
+class AboutMes < ApplicationRecord
+end
