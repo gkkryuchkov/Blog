@@ -26,6 +26,7 @@ gem 'haml-rails', '~> 1.0'
 gem 'jquery-rails'
 gem 'mini_racer', platforms: :ruby
 gem 'bootstrap', '~> 4.4.1'
+gem 'friendly_id', '~> 5.2.4'
 #gem 'font-awesome-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'popper_js', '~> 1.14.5'

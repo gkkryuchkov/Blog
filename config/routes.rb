@@ -4,11 +4,8 @@ Rails.application.routes.draw do
       request.xhr?
     end
   end
-  resources :about_mes do
-    member do
-      get 'about' => 'about_mes#index'
-    end
-  end
+  resources :about_mes 
+  get 'about' => 'about_mes#index'
 
   resources :comments do
     resources :comments

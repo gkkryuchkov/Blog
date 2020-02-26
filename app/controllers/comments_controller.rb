@@ -3,14 +3,14 @@ class CommentsController < ApplicationController
   before_action :find_commentable, only: :create
   # GET /comments
   # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
+  # def index
+  #   @comments = Comment.all
+  # end
 
   # GET /comments/1
   # GET /comments/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /comments/new
   def new
@@ -24,18 +24,22 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @commentable.comments.build(comment_params)
-    @commentable.save
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    comment = Comment.create(comment_params)
+    comment.user_profile = current_user.user_profile
+    # @commentable.comments.build(comment_params)
+    @commentable.comments << comment
+    article = find_article(@commentable)
+    redirect_to article
+    # redirect_back(fallback_location: fallback_location)
+    # respond_to do |format|
+    #   if @comment.save
+    #     format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+    #     format.json { render :show, status: :created, location: @comment }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /comments/1
@@ -64,6 +68,13 @@ class CommentsController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
+  def find_article(commentable)
+    if commentable.is_a? Comment
+      find_article(commentable.commentable)
+    else
+      commentable
+    end
+  end
   def set_comment
     @comment = Comment.find(params[:id])
   end
@@ -75,9 +86,9 @@ class CommentsController < ApplicationController
 
   def find_commentable
     if params[:comment_id]
-      @commentable = Comment.find_by_id(params[:comment_id])
+      @commentable = Comment.find(params[:comment_id])
     elsif params[:article_id]
-      @commentable = Article.find_by_id(params[:article_id])
+      @commentable = Article.friendly.find(params[:article_id])
     end
   end
 end

@@ -43,3 +43,21 @@ remove_from_favorite = ->
     })
 $(document).on('turbolinks:load', add_to_favorite)
 $(document).on('turbolinks:load', remove_from_favorite)
+
+add_comment = ->
+  $('.add_art_comment').click ->
+    code = $(this).data('partial')
+    $('#new_art_comment').append(code)
+    false
+  false
+
+$(document).on('turbolinks:load', add_comment)
+
+add_com_comment = ->
+  $('.add_com_comment').click ->
+    code = $(this).data('partial')
+    $(this).closest('#comment').append(code)
+    false
+  false
+
+$(document).on('turbolinks:load', add_com_comment)

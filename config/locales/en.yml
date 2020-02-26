@@ -10,6 +10,7 @@ en:
     sign_in: Sign in
     sign_up: Sign up
     about_mes: About me
+    new: New
   user_profile:
     my_account: My account
   sections:
@@ -30,7 +31,10 @@ en:
     add_to_favorite: Add to favorite
     remove_from_favorite: Remove from favorite
     favorite_articles: Favorite articles
+    comment: Comment
+    comments: Comments
   comments:
     new: New comment
+    reply: Reply
   comment:
     add_reply: Add a Reply

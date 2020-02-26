@@ -19,7 +19,7 @@
               .dropdown-menu.dropdown-menu-right
                 -Section.all.each do |x|
                   =link_to x.name,articles_path(section: x.id), class: 'dropdown-item h6 text-center'
-          = link_to about_mes_path, class: 'btn mx-3' do
+          = link_to about_path, class: 'btn mx-3' do
             %span.h5= t('helpers.about_mes')
             %span.h5=icon('fab', 'phoenix-framework')
           -if current_user

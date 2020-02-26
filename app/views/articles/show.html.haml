@@ -16,14 +16,19 @@
     %h2.text-center= @article.title
     %h4= @article.description
     =markdown(@article.body).html_safe
+    .d-xl-none.mt-4
+      %h4=t('articles.recommendations')
+      .text-center
+        -last_five_articles.each do |article|
+          %span.h5.b.text-center.card.mx-auto.py-2{style: 'display: inline'}=link_to article.title, article
     .mt-4
-      %ul#comments
-        = render partial: "comments/comment", collection: @article.comments
-  .d-xl-none
-    %h4=t('articles.recommendations')
-    .text-center
-      -last_five_articles.each do |article|
-        %span.h5.b.text-center.card.mx-auto.py-2{style: 'display: inline'}=link_to article.title, article
+    .h3=t('articles.comments')
+    -if current_user
+      #new_art_comment
+        =add_art_comment_link(@article)
+
+    %ul.list-unstyled#comments
+      = render partial: "comments/comment", collection: @article.comments
   .d-md-none.d-xl-block.col-xl-2.border-left
     %h4=t('articles.recommendations')
     -last_five_articles.each do |article|

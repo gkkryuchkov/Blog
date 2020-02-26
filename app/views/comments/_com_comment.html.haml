@@ -1,0 +1,6 @@
+.pl-4
+  = simple_form_for [com_comment, Comment.new] do |f|
+    -# =f.input :commentable_id,as: :hidden, value: com_comment.id
+    -# =f.input :commentable_type, as: :hidden, value: 'Comment'
+    =f.input :content, placeholder: t('comment.add_reply')
+    = f.button :submit, 'Reply', class: "btn-info"

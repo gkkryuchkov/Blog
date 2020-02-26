@@ -1,9 +1,14 @@
-%li
-  =comment.content
-
-  = simple_form_for [comment, Comment.new] do |f|
-    =f.input :content, placeholder: t('comment.add_reply')
-    = f.button :submit, 'Reply', class: "btn-info"
-
-  %ul
-    = render partial: 'comments/comment', collection: comment.comments
+%li.my-1
+  #comment
+    .card
+      .card-header
+        -if comment.user_profile.avatar.attached?
+          %span=image_tag comment.user_profile.avatar, class: 'icon'
+        =comment.user_profile.username
+      .card-body
+        =comment.content
+        .text-rigth
+          =add_com_comment_link(comment,comment.id)
+  .pl-4.border-left
+    %ul.list-unstyled
+      = render partial: 'comments/comment', collection: comment.comments
