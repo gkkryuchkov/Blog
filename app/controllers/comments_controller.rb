@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :clear_content]
   before_action :find_commentable, only: :create
   # GET /comments
   # GET /comments.json
@@ -47,7 +47,11 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        @comment.edited = 1
+        @comment.save!
+        # raise @comment.inspect
+        format.html { article = find_article(@comment)
+                      redirect_to article}
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -58,15 +62,42 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   # DELETE /comments/1.json
+  #
+  def clear_content
+    @comment.content = I18n.t('comments.deleted_content')
+    @comment.deleted = 1
+    @comment.save!
+    respond_to do |format|
+      format.html {redirect_to find_article(@comment)}
+
+    end
+  end
+
   def destroy
+    article = find_article(@comment)
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to article, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+  def permissions
+    if [:create, :new].include?(action_name.to_sym) && !current_user
+      render_error("You can not create comments until you sign in")
+    end
+    if [:destroy, :update, :edit].include?(action_name.to_sym)
+      if !current_user
+        render_error("You could not change comments until you sign in")
+      else
+        unless comment.user_profile == current_user.user_profile || current_user.try(:admin?)
+          render_error('This is not your comment')
+        end
+      end
+    end
+  end
   # Use callbacks to share common setup or constraints between actions.
   def find_article(commentable)
     if commentable.is_a? Comment
@@ -81,7 +112,7 @@ class CommentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
-    params.require(:comment).permit(:rating, :content)
+    params.require(:comment).permit(:rating, :content, :edited, :deleted)
   end
 
   def find_commentable

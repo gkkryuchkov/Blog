@@ -36,5 +36,8 @@ en:
   comments:
     new: New comment
     reply: Reply
+    author_deleted: "Deleted author"
+    sure_delete: "Are you sure you want to delete comment?"
+    deleted_content: "----- This comment was deleted -----"
   comment:
     add_reply: Add a Reply

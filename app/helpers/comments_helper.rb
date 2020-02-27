@@ -9,4 +9,24 @@ module CommentsHelper
       link_to name, "#", "data-partial" => h(html), class: "btn btn-outline-secondary btn-sm add_role"
   end
 
+  def has_change_rights(comment)
+    if comment.user_profile == current_user.user_profile || current_user.try(:admin?)
+      true
+    else
+      false
+    end
+  end
+
+  def choose_rating_color(rating)
+    return unless rating
+
+    if rating > 0
+      '.text-success'
+    elsif rating < 0
+      '.text-danger'
+    else
+      nil
+    end
+  end
+
 end

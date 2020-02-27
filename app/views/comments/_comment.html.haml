@@ -2,13 +2,33 @@
   #comment
     .card
       .card-header
-        -if comment.user_profile.avatar.attached?
-          %span=image_tag comment.user_profile.avatar, class: 'icon'
-        =comment.user_profile.username
+        .row.justify-content-between
+          .col-4
+            -if comment.user_profile.avatar.attached?
+              %span=image_tag comment.user_profile.avatar, class: 'icon'
+            =comment.user_profile ? comment.user_profile.try(:username) : t('comments.author_deleted')
+            -if comment.edited == 1 && comment.deleted ==0
+              =icon('far', 'edit')
+          %span.offset-5.col-3.text-right
+            -if comment.deleted == 0
+              -if current_user
+                =add_com_comment_link(comment,comment.id)
+              -if has_change_rights(comment)
+                =link_to "Edit", edit_comment_path(comment), class: 'btn btn-sm mx-1 btn-outline-secondary'
+                = link_to "Delete",comment_clear_content_path(id: comment.id, comment_id: comment.id),method: :put,
+                  class: 'btn btn-sm mx-1 btn-outline-danger'
+            -if current_user.try(:admin?)
+              =link_to comment, method: :delete, class: ' btn btn-sm mx-3 btn-danger' do
+                =t('comments.destroy')
+                =icon('fas', 'trash')
+
       .card-body
         =comment.content
-        .text-rigth
-          =add_com_comment_link(comment,comment.id)
+        -if comment.deleted == 0
+          #rating_block
+            %span#rating_down.text-danger=icon('fas', 'arrow-down')
+            %span#rating{style: "class = '#{choose_rating_color(comment.rating)}'"}=comment.rating
+            %span#rating_up.text-success=icon('fas', 'arrow-up')
   .pl-4.border-left
     %ul.list-unstyled
       = render partial: 'comments/comment', collection: comment.comments

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :comments do
     resources :comments
+    put 'clear_content' => 'comments#clear_content'
   end
   resources :sections
   resources :user_profiles

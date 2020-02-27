@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   # before_action :set_locale
   def check_user_profile
     if current_user && current_user.user_profile.nil?
-      current_user.user_profile = UserProfile.new(user_id: current_user.id, username: current_user.email[0..19])
+      current_user.user_profile = UserProfile.new(user_id: current_user.id, username: current_user.email[0..19].split('.').join(''))
+      current_user.user_profile.slug = current_user.user_profile.username
       current_user.user_profile.save!
     end
   end
