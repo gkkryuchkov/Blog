@@ -1,7 +1,7 @@
 .row
   .col-12.col-xl-9
     -if current_user.try(:admin?)
-      =link_to new_article_path, class: 'btn btn-success' do
+      =link_to new_article_path, class: 'btn btn-success','data-turbolinks-action'=>"replace" do
         =icon('fas', 'plus')
         =t('articles.new')
     -if params[:section].present? && params[:section] != ''
@@ -13,7 +13,7 @@
     - @articles.each do |article|
 
       %hr.hr.mb-3
-      %h3.b.text-center=link_to article.title, article
+      %h3.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
       %h5.text-center= article.description
 
       -#= link_to 'Show', article
@@ -27,5 +27,5 @@
   .d-md-none.d-xl-block.col-xl-3.border-left
     %h4.text-center=t('articles.recommendations')
     -last_five_articles.each do |article|
-      %h5.b.text-center=link_to article.title, article
+      %h5.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
   -#= link_to 'New Article', new_article_path

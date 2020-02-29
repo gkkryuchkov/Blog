@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
     end
   end
   include Auth
-
   # def set_locale
   #   @params_locale = params[:locale]
   #   if @params_locale.present?

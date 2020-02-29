@@ -22,13 +22,20 @@
                 =t('comments.destroy')
                 =icon('fas', 'trash')
 
-      .card-body
+      .card-body.px-3.py-2
         =comment.content
         -if comment.deleted == 0
-          #rating_block
-            %span#rating_down.text-danger=icon('fas', 'arrow-down')
-            %span#rating{style: "class = '#{choose_rating_color(comment.rating)}'"}=comment.rating
-            %span#rating_up.text-success=icon('fas', 'arrow-up')
+          .rating_block
+            -curr_rating = usr_com_rating(comment, current_user.user_profile)
+            -if curr_rating != -1
+              %span
+                =link_to comment_rating_down_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
+                  .text-danger=icon('fas', 'arrow-down')
+            %span.rating{style: "class = '#{choose_rating_color(comment.rating)}'"}=comment.rating
+            -if curr_rating != 1
+              %span
+                =link_to comment_rating_up_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
+                  .text-success=icon('fas', 'arrow-up')
   .pl-4.border-left
     %ul.list-unstyled
-      = render partial: 'comments/comment', collection: comment.comments
+      = render partial: 'comments/comment', collection: comment.comments.order(created_at: :desc)

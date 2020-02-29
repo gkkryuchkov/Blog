@@ -4,12 +4,14 @@ Rails.application.routes.draw do
       request.xhr?
     end
   end
-  resources :about_mes 
+  resources :about_mes
   get 'about' => 'about_mes#index'
 
   resources :comments do
     resources :comments
     put 'clear_content' => 'comments#clear_content'
+    post 'rating_up' => 'comments#rating_up'
+    post 'rating_down' => 'comments#rating_down'
   end
   resources :sections
   resources :user_profiles

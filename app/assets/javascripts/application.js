@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= jquery.js
 //= require activestorage
 //= require turbolinks
 //= require popper
@@ -19,10 +20,9 @@
 //= require moment
 //= require moment/ru.js
 //= require all.js
-//= require jquery.validate
-//= require jquery.validate.localization/messages_ru
 //= require direct_uploads.js
 //= require tempusdominus-bootstrap-4
 //= require twitter/typeahead
 //= require tokenize2.min.js
+//= require spinner
 //= require_tree .

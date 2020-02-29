@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy, :clear_content]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy, :clear_content, :rating_up, :rating_down]
   before_action :find_commentable, only: :create
   # GET /comments
   # GET /comments.json
@@ -80,6 +80,52 @@ class CommentsController < ApplicationController
       format.html { redirect_to article, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def rating_up
+    if params[:curr_rating].to_i == 0
+      # raise @comment.inspect
+      @comment.rating += 1
+
+      u_c_rating = UsrComRating.create(
+          comment_id: @comment.id,
+          user_profile_id: current_user.user_profile.id,
+          rating: 1)
+      @comment.usr_com_ratings << u_c_rating
+      # raise @comment.usr_com_ratings.inspect
+      @comment.save!
+
+    elsif params[:curr_rating].to_i == -1
+      @comment.rating += 1
+      u_c_rating = UsrComRating.find_by(
+          comment_id: @comment.id,
+          user_profile_id: current_user.user_profile.id)
+      @comment.usr_com_ratings.delete(u_c_rating)
+      u_c_rating.destroy!
+      @comment.save!
+    end
+    redirect_to find_article(@comment)
+  end
+
+  def rating_down
+    if params[:curr_rating].to_i == 0
+      @comment.rating -= 1
+      u_c_rating = UsrComRating.create(
+          comment_id: @comment.id,
+          user_profile_id: current_user.user_profile.id,
+          rating: -1)
+      @comment.usr_com_ratings << u_c_rating
+      @comment.save!
+    elsif params[:curr_rating].to_i == 1
+      @comment.rating -= 1
+      u_c_rating = UsrComRating.find_by(
+          comment_id: @comment.id,
+          user_profile_id: current_user.user_profile.id)
+      @comment.usr_com_ratings.delete(u_c_rating)
+      u_c_rating.destroy!
+      @comment.save!
+    end
+    redirect_to find_article(@comment)
   end
 
   private

@@ -1,99 +1,94 @@
-                   Prefix Verb   URI Pattern                                                                              Controller#Action
-                about_mess GET    /about_mess(.:format)                                                                     about_mess#index
-                          POST   /about_mess(.:format)                                                                     about_mess#create
-             new_about_mes GET    /about_mess/new(.:format)                                                                 about_mess#new
-            edit_about_mes GET    /about_mess/:id/edit(.:format)                                                            about_mess#edit
-                 about_mes GET    /about_mess/:id(.:format)                                                                 about_mess#show
-                          PATCH  /about_mess/:id(.:format)                                                                 about_mess#update
-                          PUT    /about_mess/:id(.:format)                                                                 about_mess#update
-                          DELETE /about_mess/:id(.:format)                                                                 about_mess#destroy
-                 comments GET    (/:locale)/comments(.:format)                                                            comments#index {:locale=>/ru|en/}
-                          POST   (/:locale)/comments(.:format)                                                            comments#create {:locale=>/ru|en/}
-              new_comment GET    (/:locale)/comments/new(.:format)                                                        comments#new {:locale=>/ru|en/}
-             edit_comment GET    (/:locale)/comments/:id/edit(.:format)                                                   comments#edit {:locale=>/ru|en/}
-                  comment GET    (/:locale)/comments/:id(.:format)                                                        comments#show {:locale=>/ru|en/}
-                          PATCH  (/:locale)/comments/:id(.:format)                                                        comments#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/comments/:id(.:format)                                                        comments#update {:locale=>/ru|en/}
-                          DELETE (/:locale)/comments/:id(.:format)                                                        comments#destroy {:locale=>/ru|en/}
-                 articles GET    (/:locale)/articles(.:format)                                                            articles#index {:locale=>/ru|en/}
-                          POST   (/:locale)/articles(.:format)                                                            articles#create {:locale=>/ru|en/}
-              new_article GET    (/:locale)/articles/new(.:format)                                                        articles#new {:locale=>/ru|en/}
-             edit_article GET    (/:locale)/articles/:id/edit(.:format)                                                   articles#edit {:locale=>/ru|en/}
-                  article GET    (/:locale)/articles/:id(.:format)                                                        articles#show {:locale=>/ru|en/}
-                          PATCH  (/:locale)/articles/:id(.:format)                                                        articles#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/articles/:id(.:format)                                                        articles#update {:locale=>/ru|en/}
-                          DELETE (/:locale)/articles/:id(.:format)                                                        articles#destroy {:locale=>/ru|en/}
-                 sections GET    (/:locale)/sections(.:format)                                                            sections#index {:locale=>/ru|en/}
-                          POST   (/:locale)/sections(.:format)                                                            sections#create {:locale=>/ru|en/}
-              new_section GET    (/:locale)/sections/new(.:format)                                                        sections#new {:locale=>/ru|en/}
-             edit_section GET    (/:locale)/sections/:id/edit(.:format)                                                   sections#edit {:locale=>/ru|en/}
-                  section GET    (/:locale)/sections/:id(.:format)                                                        sections#show {:locale=>/ru|en/}
-                          PATCH  (/:locale)/sections/:id(.:format)                                                        sections#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/sections/:id(.:format)                                                        sections#update {:locale=>/ru|en/}
-                          DELETE (/:locale)/sections/:id(.:format)                                                        sections#destroy {:locale=>/ru|en/}
-            user_profiles GET    (/:locale)/user_profiles(.:format)                                                       user_profiles#index {:locale=>/ru|en/}
-                          POST   (/:locale)/user_profiles(.:format)                                                       user_profiles#create {:locale=>/ru|en/}
-         new_user_profile GET    (/:locale)/user_profiles/new(.:format)                                                   user_profiles#new {:locale=>/ru|en/}
-        edit_user_profile GET    (/:locale)/user_profiles/:id/edit(.:format)                                              user_profiles#edit {:locale=>/ru|en/}
-             user_profile GET    (/:locale)/user_profiles/:id(.:format)                                                   user_profiles#show {:locale=>/ru|en/}
-                          PATCH  (/:locale)/user_profiles/:id(.:format)                                                   user_profiles#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/user_profiles/:id(.:format)                                                   user_profiles#update {:locale=>/ru|en/}
-                          DELETE (/:locale)/user_profiles/:id(.:format)                                                   user_profiles#destroy {:locale=>/ru|en/}
-         new_user_session GET    (/:locale)/auth/login(.:format)                                                          devise/sessions#new {:locale=>/ru|en/}
-             user_session POST   (/:locale)/auth/login(.:format)                                                          devise/sessions#create {:locale=>/ru|en/}
-     destroy_user_session DELETE (/:locale)/auth/logout(.:format)                                                         devise/sessions#destroy {:locale=>/ru|en/}
-        new_user_password GET    (/:locale)/auth/secret/new(.:format)                                                     devise/passwords#new {:locale=>/ru|en/}
-       edit_user_password GET    (/:locale)/auth/secret/edit(.:format)                                                    devise/passwords#edit {:locale=>/ru|en/}
-            user_password PATCH  (/:locale)/auth/secret(.:format)                                                         devise/passwords#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/auth/secret(.:format)                                                         devise/passwords#update {:locale=>/ru|en/}
-                          POST   (/:locale)/auth/secret(.:format)                                                         devise/passwords#create {:locale=>/ru|en/}
- cancel_user_registration GET    (/:locale)/auth/register/cancel(.:format)                                                devise/registrations#cancel {:locale=>/ru|en/}
-    new_user_registration GET    (/:locale)/auth/register/cmon_let_me_in(.:format)                                        devise/registrations#new {:locale=>/ru|en/}
-   edit_user_registration GET    (/:locale)/auth/register/edit(.:format)                                                  devise/registrations#edit {:locale=>/ru|en/}
-        user_registration PATCH  (/:locale)/auth/register(.:format)                                                       devise/registrations#update {:locale=>/ru|en/}
-                          PUT    (/:locale)/auth/register(.:format)                                                       devise/registrations#update {:locale=>/ru|en/}
-                          DELETE (/:locale)/auth/register(.:format)                                                       devise/registrations#destroy {:locale=>/ru|en/}
-                          POST   (/:locale)/auth/register(.:format)                                                       devise/registrations#create {:locale=>/ru|en/}
-    new_user_confirmation GET    (/:locale)/auth/verification/new(.:format)                                               devise/confirmations#new {:locale=>/ru|en/}
-        user_confirmation GET    (/:locale)/auth/verification(.:format)                                                   devise/confirmations#show {:locale=>/ru|en/}
-                          POST   (/:locale)/auth/verification(.:format)                                                   devise/confirmations#create {:locale=>/ru|en/}
-                     root GET    /(:locale)(.:format)                                                                     home_pages#index {:locale=>/ru|en/}
-                          GET    /comments(.:format)                                                                      comments#index
-                          POST   /comments(.:format)                                                                      comments#create
-                          GET    /comments/new(.:format)                                                                  comments#new
-                          GET    /comments/:id/edit(.:format)                                                             comments#edit
-                          GET    /comments/:id(.:format)                                                                  comments#show
-                          PATCH  /comments/:id(.:format)                                                                  comments#update
-                          PUT    /comments/:id(.:format)                                                                  comments#update
-                          DELETE /comments/:id(.:format)                                                                  comments#destroy
-     delete_image_article DELETE /articles/:id/delete_image(.:format)                                                     articles#delete_image
-    deliver_image_article GET    /articles/:id/deliver_image(.:format)                                                    articles#deliver_image
-                          GET    /articles(.:format)                                                                      articles#index
-                          POST   /articles(.:format)                                                                      articles#create
-                          GET    /articles/new(.:format)                                                                  articles#new
-                          GET    /articles/:id/edit(.:format)                                                             articles#edit
-                          GET    /articles/:id(.:format)                                                                  articles#show
-                          PATCH  /articles/:id(.:format)                                                                  articles#update
-                          PUT    /articles/:id(.:format)                                                                  articles#update
-                          DELETE /articles/:id(.:format)                                                                  articles#destroy
-                          GET    /sections(.:format)                                                                      sections#index
-                          POST   /sections(.:format)                                                                      sections#create
-                          GET    /sections/new(.:format)                                                                  sections#new
-                          GET    /sections/:id/edit(.:format)                                                             sections#edit
-                          GET    /sections/:id(.:format)                                                                  sections#show
-                          PATCH  /sections/:id(.:format)                                                                  sections#update
-                          PUT    /sections/:id(.:format)                                                                  sections#update
-                          DELETE /sections/:id(.:format)                                                                  sections#destroy
-                          GET    /user_profiles(.:format)                                                                 user_profiles#index
-                          POST   /user_profiles(.:format)                                                                 user_profiles#create
-                          GET    /user_profiles/new(.:format)                                                             user_profiles#new
-                          GET    /user_profiles/:id/edit(.:format)                                                        user_profiles#edit
-                          GET    /user_profiles/:id(.:format)                                                             user_profiles#show
-                          PATCH  /user_profiles/:id(.:format)                                                             user_profiles#update
-                          PUT    /user_profiles/:id(.:format)                                                             user_profiles#update
-                          DELETE /user_profiles/:id(.:format)                                                             user_profiles#destroy
-       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
-rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
-       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
-update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
-     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+                      Prefix Verb   URI Pattern                                                                              Controller#Action
+                   about_mes GET    /about_mes(.:format)                                                                     about_mes#index
+                             POST   /about_mes(.:format)                                                                     about_mes#create
+                new_about_me GET    /about_mes/new(.:format)                                                                 about_mes#new
+               edit_about_me GET    /about_mes/:id/edit(.:format)                                                            about_mes#edit
+                    about_me GET    /about_mes/:id(.:format)                                                                 about_mes#show
+                             PATCH  /about_mes/:id(.:format)                                                                 about_mes#update
+                             PUT    /about_mes/:id(.:format)                                                                 about_mes#update
+                             DELETE /about_mes/:id(.:format)                                                                 about_mes#destroy
+                       about GET    /about(.:format)                                                                         about_mes#index
+            comment_comments GET    /comments/:comment_id/comments(.:format)                                                 comments#index
+                             POST   /comments/:comment_id/comments(.:format)                                                 comments#create
+         new_comment_comment GET    /comments/:comment_id/comments/new(.:format)                                             comments#new
+        edit_comment_comment GET    /comments/:comment_id/comments/:id/edit(.:format)                                        comments#edit
+             comment_comment GET    /comments/:comment_id/comments/:id(.:format)                                             comments#show
+                             PATCH  /comments/:comment_id/comments/:id(.:format)                                             comments#update
+                             PUT    /comments/:comment_id/comments/:id(.:format)                                             comments#update
+                             DELETE /comments/:comment_id/comments/:id(.:format)                                             comments#destroy
+       comment_clear_content PUT    /comments/:comment_id/clear_content(.:format)                                            comments#clear_content
+           comment_rating_up POST   /comments/:comment_id/rating_up(.:format)                                                comments#rating_up
+                    comments GET    /comments(.:format)                                                                      comments#index
+                             POST   /comments(.:format)                                                                      comments#create
+                 new_comment GET    /comments/new(.:format)                                                                  comments#new
+                edit_comment GET    /comments/:id/edit(.:format)                                                             comments#edit
+                     comment GET    /comments/:id(.:format)                                                                  comments#show
+                             PATCH  /comments/:id(.:format)                                                                  comments#update
+                             PUT    /comments/:id(.:format)                                                                  comments#update
+                             DELETE /comments/:id(.:format)                                                                  comments#destroy
+                    sections GET    /sections(.:format)                                                                      sections#index
+                             POST   /sections(.:format)                                                                      sections#create
+                 new_section GET    /sections/new(.:format)                                                                  sections#new
+                edit_section GET    /sections/:id/edit(.:format)                                                             sections#edit
+                     section GET    /sections/:id(.:format)                                                                  sections#show
+                             PATCH  /sections/:id(.:format)                                                                  sections#update
+                             PUT    /sections/:id(.:format)                                                                  sections#update
+                             DELETE /sections/:id(.:format)                                                                  sections#destroy
+               user_profiles GET    /user_profiles(.:format)                                                                 user_profiles#index
+                             POST   /user_profiles(.:format)                                                                 user_profiles#create
+            new_user_profile GET    /user_profiles/new(.:format)                                                             user_profiles#new
+           edit_user_profile GET    /user_profiles/:id/edit(.:format)                                                        user_profiles#edit
+                user_profile GET    /user_profiles/:id(.:format)                                                             user_profiles#show
+                             PATCH  /user_profiles/:id(.:format)                                                             user_profiles#update
+                             PUT    /user_profiles/:id(.:format)                                                             user_profiles#update
+                             DELETE /user_profiles/:id(.:format)                                                             user_profiles#destroy
+            new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
+                user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
+        destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
+           new_user_password GET    /users/password/new(.:format)                                                            devise/passwords#new
+          edit_user_password GET    /users/password/edit(.:format)                                                           devise/passwords#edit
+               user_password PATCH  /users/password(.:format)                                                                devise/passwords#update
+                             PUT    /users/password(.:format)                                                                devise/passwords#update
+                             POST   /users/password(.:format)                                                                devise/passwords#create
+    cancel_user_registration GET    /users/cancel(.:format)                                                                  devise/registrations#cancel
+       new_user_registration GET    /users/sign_up(.:format)                                                                 devise/registrations#new
+      edit_user_registration GET    /users/edit(.:format)                                                                    devise/registrations#edit
+           user_registration PATCH  /users(.:format)                                                                         devise/registrations#update
+                             PUT    /users(.:format)                                                                         devise/registrations#update
+                             DELETE /users(.:format)                                                                         devise/registrations#destroy
+                             POST   /users(.:format)                                                                         devise/registrations#create
+                        root GET    /                                                                                        home_pages#index
+            article_comments GET    /articles/:article_id/comments(.:format)                                                 comments#index
+                             POST   /articles/:article_id/comments(.:format)                                                 comments#create
+         new_article_comment GET    /articles/:article_id/comments/new(.:format)                                             comments#new
+        edit_article_comment GET    /articles/:article_id/comments/:id/edit(.:format)                                        comments#edit
+             article_comment GET    /articles/:article_id/comments/:id(.:format)                                             comments#show
+                             PATCH  /articles/:article_id/comments/:id(.:format)                                             comments#update
+                             PUT    /articles/:article_id/comments/:id(.:format)                                             comments#update
+                             DELETE /articles/:article_id/comments/:id(.:format)                                             comments#destroy
+        delete_image_article DELETE /articles/:id/delete_image(.:format)                                                     articles#delete_image
+       deliver_image_article GET    /articles/:id/deliver_image(.:format)                                                    articles#deliver_image
+     add_to_favorite_article POST   /articles/:id/add_to_favorite(.:format)                                                  articles#add_to_favorite {:constraint=>#<OnlyAjaxRequest:0x000055bd65ac31e0>}
+remove_from_favorite_article DELETE /articles/:id/remove_from_favorite(.:format)                                             articles#remove_from_favorite {:constraint=>#<OnlyAjaxRequest:0x000055bd65ac71c8>}
+                    articles GET    /articles(.:format)                                                                      articles#index
+                             POST   /articles(.:format)                                                                      articles#create
+                 new_article GET    /articles/new(.:format)                                                                  articles#new
+                edit_article GET    /articles/:id/edit(.:format)                                                             articles#edit
+                     article GET    /articles/:id(.:format)                                                                  articles#show
+                             PATCH  /articles/:id(.:format)                                                                  articles#update
+                             PUT    /articles/:id(.:format)                                                                  articles#update
+                             DELETE /articles/:id(.:format)                                                                  articles#destroy
+           favorite_articles GET    /favorite_articles(.:format)                                                             articles#favorite_articles
+                             GET    /sections(.:format)                                                                      sections#index
+                             POST   /sections(.:format)                                                                      sections#create
+                             GET    /sections/new(.:format)                                                                  sections#new
+                             GET    /sections/:id/edit(.:format)                                                             sections#edit
+                             GET    /sections/:id(.:format)                                                                  sections#show
+                             PATCH  /sections/:id(.:format)                                                                  sections#update
+                             PUT    /sections/:id(.:format)                                                                  sections#update
+                             DELETE /sections/:id(.:format)                                                                  sections#destroy
+          rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+   rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+          rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+   update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+        rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create

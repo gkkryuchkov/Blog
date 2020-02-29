@@ -27,7 +27,7 @@
       #new_art_comment
         =add_art_comment_link(@article)
     %ul.list-unstyled#comments
-      = render partial: "comments/comment", collection: @article.comments
+      = render partial: "comments/comment", collection: @article.comments.order(created_at: :desc)
   .d-md-none.d-xl-block.col-xl-2.border-left
     %h4=t('articles.recommendations')
     -last_five_articles(@article.id).each do |article|

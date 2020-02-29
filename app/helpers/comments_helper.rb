@@ -24,9 +24,17 @@ module CommentsHelper
       '.text-success'
     elsif rating < 0
       '.text-danger'
-    else
-      nil
+
     end
+  end
+
+  def usr_com_rating(com, usr)
+    # raise com.usr_com_ratings[0].inspect
+    u_c_r = UsrComRating.find_by(user_profile_id: usr.id, comment_id: com.id)
+    rating = u_c_r.try(:rating)
+    rating = 0 if u_c_r.nil?
+    rating
+    # raise rating.inspect
   end
 
 end
