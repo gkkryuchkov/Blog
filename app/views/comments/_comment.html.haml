@@ -26,13 +26,13 @@
         =comment.content
         -if comment.deleted == 0
           .rating_block
-            -curr_rating = usr_com_rating(comment, current_user.user_profile)
-            -if curr_rating != -1
+            -curr_rating = usr_com_rating(comment, current_user.try(:user_profile))
+            -if curr_rating != -1 && logged_and_not_your?(comment)
               %span
                 =link_to comment_rating_down_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
                   .text-danger=icon('fas', 'arrow-down')
             %span.rating{style: "class = '#{choose_rating_color(comment.rating)}'"}=comment.rating
-            -if curr_rating != 1
+            -if curr_rating != 1 && logged_and_not_your?(comment)
               %span
                 =link_to comment_rating_up_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
                   .text-success=icon('fas', 'arrow-up')
