@@ -27,6 +27,8 @@
               %span.h5= t('articles.favorite_articles')
               %span.h5=icon('far', 'star')
         -if current_user
+          -if new_notifications?
+            %span.text-warning= icon('far', 'bell')
           .navbar-nav.my-1
             .nav-item.dropdown.text-center
               =link_to ?#, class: 'nav-link dropdown-toggle text-nowrap my-auto h5', data: {toggle: 'dropdown'} do
@@ -37,6 +39,9 @@
                 -else
                   =current_user.email
               .dropdown-menu.dropdown-menu-right
+                =link_to notifications_path, class: "dropdown-item h5 #{class_for_bell}",'data-turbolinks-action'=>"replace" do
+                  %span= icon('far', 'bell')
+                  =t('notifications.notifications')
                 =link_to current_user.user_profile, class: 'dropdown-item h5','data-turbolinks-action'=>"replace" do
                   =icon('far', 'user')
                   =t('user_profile.my_account')

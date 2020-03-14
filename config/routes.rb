@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   class OnlyAjaxRequest
     def matches?(request)
       request.xhr?

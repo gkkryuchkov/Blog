@@ -6,6 +6,7 @@ class UserProfile < ApplicationRecord
   has_one_attached :avatar
   has_many :usr_com_ratings, dependent: :nullify
   has_many :comments, through: :usr_com_ratings
+  has_many :notifications
 
   validates :user, presence: true
   validates :username, uniqueness: {case_sensitive: false}, length: {in: 5..20}

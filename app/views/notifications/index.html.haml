@@ -1,0 +1,24 @@
+.row
+  .col-12.col-xl-9
+    %h1.text-center=t('notifications.notifications')
+    -if @new_notifications.any?
+      %h3= t('notifications.new')
+      - @new_notifications.each do |notification|
+        .my-3.ml-4
+          %span= raw(new_notification)
+          = notification.text
+          =link_to notification.article, class: 'btn btn-sm text-info ' do
+            =t('notifications.goto_article')
+      %hr
+    %h4='Old'
+    - @old_notifications.each do |notification|
+      .my-3.ml-4
+        %div= notification.text
+        =link_to notification.article, class: 'btn btn-sm text-info' do
+          =t('notifications.goto_article')
+    .d-xl-none
+      reccemendations
+  .d-md-none.d-xl-block.col-xl-3.border-left
+    %h4.text-center=t('articles.recommendations')
+    -last_five_articles.each do |article|
+      %h5.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"

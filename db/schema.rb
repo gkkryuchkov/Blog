@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_161601) do
+ActiveRecord::Schema.define(version: 2020_03_14_065251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,19 @@ ActiveRecord::Schema.define(version: 2020_02_28_161601) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "text"
+    t.bigint "article_id"
+    t.bigint "comment_id"
+    t.bigint "user_profile_id"
+    t.integer "seen", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["user_profile_id"], name: "index_notifications_on_user_profile_id"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -149,5 +162,8 @@ ActiveRecord::Schema.define(version: 2020_02_28_161601) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "sections"
   add_foreign_key "articles", "user_profiles"
+  add_foreign_key "notifications", "articles"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "user_profiles"
   add_foreign_key "user_profiles", "users"
 end

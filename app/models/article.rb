@@ -1,10 +1,14 @@
+# coding: utf-8
 class Article < ApplicationRecord
   belongs_to :user_profile
   belongs_to :section, optional: true
   has_many :comments, as: :commentable
+  has_many :notifications
   has_and_belongs_to_many :favorite_users, join_table: 'favorite_articles', class_name: 'UserProfile'
 
-  accepts_nested_attributes_for :comments#TODO: доделать
+
+  validates :title, presence: true, uniqueness: {case_sensitive: false}
+  validates :body, presence: true
   #validates :user_profile, presence:true
   has_many_attached :images
   scope :ordering, -> {order(publish_date: :desc)}

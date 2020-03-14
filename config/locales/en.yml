@@ -33,6 +33,8 @@ en:
     favorite_articles: Favorite articles
     comment: Comment
     comments: Comments
+  notifications:
+    notifications: Notifications
   comments:
     new: New comment
     reply: Reply

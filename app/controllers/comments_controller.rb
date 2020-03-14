@@ -29,6 +29,15 @@ class CommentsController < ApplicationController
     # @commentable.comments.build(comment_params)
     @commentable.comments << comment
     article = find_article(@commentable)
+    if @commentable.is_a? Comment
+      Notification.create!(
+        article_id: article.id,
+        comment_id: @commentable.id,
+        user_profile_id:  current_user.user_profile.id,
+        seen: 0,
+        text: "#{current_user.user_profile.username.capitalize} left the answer for your comment"
+      )
+    end
     redirect_to article
     # redirect_back(fallback_location: fallback_location)
     # respond_to do |format|
@@ -93,6 +102,15 @@ class CommentsController < ApplicationController
           rating: 1)
       @comment.usr_com_ratings << u_c_rating
       # raise @comment.usr_com_ratings.inspect
+      article_id = find_article(@comment).id
+      Notification.create!(
+        article_id: article_id,
+        comment_id: @comment.id,
+        user_profile_id:  current_user.user_profile.id,
+        seen: 0,
+        text: "#{current_user.user_profile.username.capitalize} rated up your comment"
+      )
+
       @comment.save!
 
     elsif params[:curr_rating].to_i == -1
