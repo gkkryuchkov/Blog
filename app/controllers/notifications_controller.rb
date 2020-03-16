@@ -1,13 +1,14 @@
 class NotificationsController < ApplicationController
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
   before_action :permissions
+  after_action :make_seen, only: :index
   # GET /notifications
   # GET /notifications.json
   def index
 
     @new_notifications = Notification.where(user_profile_id: current_user.user_profile.id, seen: 0)
     @old_notifications = Notification.where(user_profile_id: current_user.user_profile.id, seen: 1)
-    Notification.all.update(seen: 1)
+    
   end
 
   # GET /notifications/1
@@ -68,6 +69,10 @@ class NotificationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_notification
       @notification = Notification.find(params[:id])
+    end
+
+    def make_seen
+      Notification.all.update(seen: 1)
     end
 
     def permissions

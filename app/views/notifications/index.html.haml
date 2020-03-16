@@ -5,7 +5,7 @@
       %h3= t('notifications.new')
       - @new_notifications.each do |notification|
         .my-3.ml-4
-          %span= raw(new_notification)
+          %span.text-warning= icon('far', 'bell')
           = notification.text
           =link_to notification.article, class: 'btn btn-sm text-info ' do
             =t('notifications.goto_article')
