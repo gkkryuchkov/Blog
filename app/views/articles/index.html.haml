@@ -8,6 +8,10 @@
       %h1.text-center=section_name(params[:section])
     -elsif @favorite
       %h1.text-center=t('articles.favorite_articles')
+    -elsif params['search'] && params['search']['name'] != ''
+      %h2.text-center
+        %span=t('articles.found_by')
+        %span="'#{params['search']['name']}'"
     -else
       %h1.text-center=t('articles.articles')
     - @articles.each do |article|

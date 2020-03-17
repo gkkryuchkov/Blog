@@ -33,6 +33,7 @@ en:
     favorite_articles: Favorite articles
     comment: Comment
     comments: Comments
+    found_by: "Articles found by keyword"
   notifications:
     notifications: Notifications
   comments:

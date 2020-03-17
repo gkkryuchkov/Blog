@@ -26,6 +26,10 @@
             =link_to favorite_articles_path, class: 'btn mx-3','data-turbolinks-action'=>"replace" do
               %span.h5= t('articles.favorite_articles')
               %span.h5=icon('far', 'star')
+        .mr-4
+          = simple_form_for :search, url: articles_path, method: 'GET', html: {class: 'form-inline'} do |f|
+            = f.input_field :name, required: false
+            = f.submit "Search", class: 'btn btn-outline-secondary btn-sm'
         -if current_user
           -if new_notifications?
             %span.text-warning= icon('far', 'bell')

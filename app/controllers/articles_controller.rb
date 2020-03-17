@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @articles = @articles.where('hidden = 0') unless current_user.try(:admin?)
     @articles = @articles.where('section_id = ?', params[:section]) if params[:section].present? && params[:section]!=''
+    @articles = filter(params['search']) if params['search'] && params['search'] != ''
     @articles = @articles.ordering.page(params[:page])
   end
 
@@ -124,6 +125,10 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.friendly.find(params[:id])
     end
+
+  def filter(search)
+    @articles.where('title ILIKE ? or description ILIKE ?', '%'+search['name']+'%', '%'+search['name']+'%')
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
