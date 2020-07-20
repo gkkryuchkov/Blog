@@ -2,7 +2,10 @@
   .col-12.col-xl-10
     %h1.text-center.my-2 About Me
     .my-2.container
-      = markdown(@about_mes.body).html_safe
+      #ddd
+        .hidden.file{hidden: true} images/4794.jpg
+        .image=image_tag "console.gif"
+      -# = markdown(@about_mes.body).html_safe
     .d-xl-none
       %h4=t('articles.recommendations')
       -last_five_articles.each do |article|

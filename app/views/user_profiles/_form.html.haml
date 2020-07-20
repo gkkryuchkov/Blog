@@ -3,8 +3,8 @@
   = error_messages_for @user_profile
 
   .form-inputs
-    =f.input :username
-    =f.input :status
-    =f.input :avatar, direct_upload: true
+    %b=f.input :username
+    %b=f.input :status
+    %b=f.input :avatar, direct_upload: true
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-lg btn-success"

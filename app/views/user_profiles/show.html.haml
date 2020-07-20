@@ -1,12 +1,16 @@
-%p#notice= notice
+.container
+  .card.mb-4
+    .card-body
+      %div
+        %b
+          %h3
+            Username:
+            = @user_profile.username
+      %div
+        %b
+          %h3
+            Status:
+            = @user_profile.status
 
-%p
-  %b Username:
-  = @user_profile.username
-%p
-  %b Status:
-  = @user_profile.status
+  %span.mr-2= link_to 'Edit', edit_user_profile_path(@user_profile), class: 'btn btn-lg btn-warning'
 
-= link_to 'Edit', edit_user_profile_path(@user_profile)
-\|
-= link_to 'Back', user_profiles_path

@@ -24,5 +24,5 @@
 //= require tempusdominus-bootstrap-4
 //= require twitter/typeahead
 //= require tokenize2.min.js
-//= require spinner
+//= require about_mes
 //= require_tree .

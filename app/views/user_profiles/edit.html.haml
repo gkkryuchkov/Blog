@@ -1,7 +1,10 @@
-%h1 Editing user_profile
+.container
+  .card.mb-4
+    .card-header
+      %h1 Editing Profile
+    .card-body
+      = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @user_profile
-\|
-= link_to 'Back', user_profiles_path
+  = link_to 'Show', @user_profile, class: "btn btn-sm btn-info"
+  \|
+  = link_to 'Back', @user_profile, class: "btn btn-sm btn-secondary"

@@ -3,32 +3,32 @@
     .container-fluid
       .navbar-brand.mr-4
         -#%span= image_tag("mephi_logo.png", :alt => "НИЯУ МИФИ", class: "logo")
-        =link_to root_path, {class: 'h1', 'data-turbolinks-action'=>"replace"} do
+        =link_to root_path, {class: 'h1'} do
           =t('app.hack_and_protect')
       %button.navbar-toggler{type: "button", data: {toggle: 'collapse', target: '#navbar'}}
         =icon 'fas',  "bars"
       #navbar.collapse.navbar-collapse
         .navbar-nav.mr-auto
-          =link_to articles_path, class: 'btn nav-item mx-3','data-turbolinks-action'=>"replace" do
+          =link_to articles_path, class: 'btn nav-item mx-3' do
             %span.h5=icon('far', 'newspaper')
             %span.h5=t('articles.feed')
           -if Section.all.any?
             %span.nav-item.dropdown
-              =link_to  ?#, class: 'mx-3 black nav-link dropdown-toggle  my-auto text-center','data-turbolinks-action'=>"replace", data: {toggle: 'dropdown'} do
+              =link_to  ?#, class: 'mx-3 black nav-link dropdown-toggle  my-auto text-center', data: {toggle: 'dropdown'} do
                 %span.h5=t( 'sections.sections')
               .dropdown-menu.dropdown-menu-right
                 -Section.all.each do |x|
-                  =link_to x.name,articles_path(section: x.id), class: 'dropdown-item h6 text-center','data-turbolinks-action'=>"replace"
+                  =link_to x.name,articles_path(section: x.id), class: 'dropdown-item h6 text-center'
           = link_to about_path, class: 'btn mx-3','data-turbolinks-action'=>"replace" do
             %span.h5= t('helpers.about_mes')
             %span.h5=icon('fab', 'phoenix-framework')
           -if current_user
-            =link_to favorite_articles_path, class: 'btn mx-3','data-turbolinks-action'=>"replace" do
+            =link_to favorite_articles_path, class: 'btn mx-3' do
               %span.h5= t('articles.favorite_articles')
               %span.h5=icon('far', 'star')
         .mr-4
           = simple_form_for :search, url: articles_path, method: 'GET', html: {class: 'form-inline'} do |f|
-            = f.input_field :name, required: false
+            .mr-2= f.input_field :name, required: false
             = f.submit "Search", class: 'btn btn-outline-secondary btn-sm'
         -if current_user
           -if new_notifications?
@@ -43,21 +43,21 @@
                 -else
                   =current_user.email
               .dropdown-menu.dropdown-menu-right
-                =link_to notifications_path, class: "dropdown-item h5 #{class_for_bell}",'data-turbolinks-action'=>"replace" do
+                =link_to notifications_path, class: "dropdown-item h5 #{class_for_bell}" do
                   %span= icon('far', 'bell')
                   =t('notifications.notifications')
-                =link_to current_user.user_profile, class: 'dropdown-item h5','data-turbolinks-action'=>"replace" do
+                =link_to current_user.user_profile, class: 'dropdown-item h5' do
                   =icon('far', 'user')
                   =t('user_profile.my_account')
-                =link_to destroy_user_session_path, method: :delete,  class: 'dropdown-item h5','data-turbolinks-action'=>"replace" do
+                =link_to destroy_user_session_path, method: :delete,  class: 'dropdown-item h5' do
                   =icon('fas', 'sign-out-alt')
                   =t('sessions.logout.btn')
 
         -else
           .button-groupnewspaper
-            =link_to new_user_session_path, class: 'btn btn-outline-primary mr-1','data-turbolinks-action'=>"replace" do
+            =link_to new_user_session_path, class: 'btn btn-outline-primary mr-1' do
               =icon('fas', 'sign-in-alt')
               =t('helpers.sign_in')
-            =link_to new_user_registration_url, class: 'btn btn-outline-primary','data-turbolinks-action'=>"replace" do
+            =link_to new_user_registration_url, class: 'btn btn-outline-primary' do
               =icon('fas', 'user-plus')
               =t('helpers.sign_up')
