@@ -10,7 +10,10 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+      - type: bind
+        source: .
+        target: /app
+        consistency: consistent 
       - gem_cache:/usr/local/bundle/gems
     env_file: .env
     environment:
