@@ -30,7 +30,7 @@ en:
     delete: Delete article
     add_to_favorite: Add to favorite
     remove_from_favorite: Remove from favorite
-    favorite_articles: Favorite articles
+    favorite_articles: Favorite
     comment: Comment
     comments: Comments
     found_by: "Articles found by keyword"

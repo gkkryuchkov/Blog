@@ -123,11 +123,11 @@ class ArticlesController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.friendly.find(params[:id])
+      @article = Article.find(params[:id])
     end
 
   def filter(search)
-    @articles.where('title ILIKE ? or description ILIKE ?', '%'+search['name']+'%', '%'+search['name']+'%')
+    @articles.where('title ILIKE ? or description ILIKE ?', '%'+search+'%', '%'+search+'%')
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

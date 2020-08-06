@@ -22,7 +22,7 @@
                 = link_to x.filename, controller: :articles, action: :deliver_image, id: x.id
                 = link_to  delete_image_article_url(x.id),method: :delete,
                     data: { confirm: I18n.t('helpers.sure') } do
-                  =icon('fas','trash')
+                  %i.fas.fa-trash
                 %input.form-controle{value: url_for(x)}
   .actions
     = f.button :submit, 'Save', class: "btn-info"

@@ -8,7 +8,7 @@
               %span=image_tag comment.user_profile.avatar, class: 'icon'
             =comment.user_profile ? comment.user_profile.try(:username) : t('comments.author_deleted')
             -if comment.edited == 1 && comment.deleted ==0
-              =icon('far', 'edit')
+              %i.far.fa-edit
           %span.offset-5.col-3.text-right
             -if comment.deleted == 0
               -if current_user
@@ -20,7 +20,7 @@
             -if current_user.try(:admin?)
               =link_to comment, method: :delete, class: ' btn btn-sm mx-3 btn-danger' do
                 =t('comments.destroy')
-                =icon('fas', 'trash')
+                %i.fas.fa-trash
 
       .card-body.px-3.py-2
         =comment.content
@@ -30,12 +30,14 @@
             -if curr_rating != -1 && logged_and_not_your?(comment)
               %span
                 =link_to comment_rating_down_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
-                  .text-danger=icon('fas', 'arrow-down')
+                  .text-danger
+                    %i.fas.fa-arrow-down
             %span.rating{style: "class = '#{choose_rating_color(comment.rating)}'"}=comment.rating
             -if curr_rating != 1 && logged_and_not_your?(comment)
               %span
                 =link_to comment_rating_up_path(id: comment.id, comment_id: comment.id, curr_rating: curr_rating), method: :post, class: 'btn btn-sm' do
-                  .text-success=icon('fas', 'arrow-up')
+                  .text-success
+                    %i.fas.fa-arrow-up
   .pl-4.border-left
     %ul.list-unstyled
       = render partial: 'comments/comment', collection: comment.comments.order(created_at: :desc)

@@ -2,16 +2,16 @@
   .col-12.col-xl-9
     -if current_user.try(:admin?)
       =link_to new_article_path, class: 'btn btn-success','data-turbolinks-action'=>"replace" do
-        =icon('fas', 'plus')
+        %i.fas.fa-plus
         =t('articles.new')
     -if params[:section].present? && params[:section] != ''
       %h1.text-center=section_name(params[:section])
     -elsif @favorite
       %h1.text-center=t('articles.favorite_articles')
-    -elsif params['search'] && params['search']['name'] != ''
+    -elsif params['search'] && params['search'] != ''
       %h2.text-center
         %span=t('articles.found_by')
-        %span="'#{params['search']['name']}'"
+        %span="'#{params['search']}'"
     -else
       %h1.text-center=t('articles.articles')
     - @articles.each do |article|

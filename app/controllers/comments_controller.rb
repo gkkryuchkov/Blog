@@ -183,7 +183,7 @@ class CommentsController < ApplicationController
     if params[:comment_id]
       @commentable = Comment.find(params[:comment_id])
     elsif params[:article_id]
-      @commentable = Article.friendly.find(params[:article_id])
+      @commentable = Article.find(params[:article_id])
     end
   end
 end

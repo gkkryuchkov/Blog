@@ -15,6 +15,7 @@ module Blog
     config.i18n.default_locale = :en
     config.time_zone = 'Moscow'
     config.turbolinks.auto_include = false
+    config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

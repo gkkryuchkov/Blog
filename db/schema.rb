@@ -59,15 +59,17 @@ ActiveRecord::Schema.define(version: 2020_03_14_065251) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "rating", default: 0
-    t.text "content"
-    t.integer "commentable_id"
-    t.string "commentable_type"
+    t.integer "rating"
+    t.text "comment_body"
     t.bigint "user_profile_id"
+    t.bigint "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_comment_id"
     t.integer "edited", default: 0
     t.integer "deleted", default: 0
+    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["parent_comment_id"], name: "index_comments_on_parent_comment_id"
     t.index ["user_profile_id"], name: "index_comments_on_user_profile_id"
   end
 
