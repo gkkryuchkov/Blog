@@ -1,15 +1,34 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Description:
-  = @article.description
-%p
-  %b Body:
-  = @article.body
-
-= link_to 'Edit', edit_article_path(@article)
-\|
-= link_to 'Back', articles_path
+.row
+  .col-12.col-xl-10
+    -if current_user.try(:admin?)
+      =link_to edit_article_path(@article), class: 'btn btn-success' do
+        %i.fas.fa-edit
+        =t('articles.edit')
+      =link_to @article, method: :delete, class: 'btn btn-danger ml-2' do
+        %i.fas.fa-trash
+        =t('articles.delete')
+    -if current_user && !current_user.user_profile.favorite_articles.include?(@article)
+      =link_to '#', class: 'btn btn-outline-success mx-2', id: 'add_to_favorite', data: {current_user_id: current_user.user_profile.id, article_id: @article.id} do
+        =t('articles.add_to_favorite')
+    -elsif current_user
+      =link_to '#', class: 'btn btn-outline-warning mx-2', id: 'remove_from_favorite', data: {current_user_id: current_user.user_profile.id, article_id: @article.id} do
+        =t('articles.remove_from_favorite')
+    %h2.text-center= @article.title
+    %h4= @article.description
+    =markdown(@article.body).html_safe
+    .d-xl-none.mt-4
+      %h4=t('articles.recommendations')
+      .text-center
+        -last_five_articles(@article.id).each do |article|
+          %span.h5.b.text-center.card.mx-auto.py-2{style: 'display: inline'}=link_to article.title, article
+    .mt-4
+    .h3=t('articles.comments')
+    -if current_user
+      #new_art_comment
+        =add_art_comment_link(@article)
+    %ul.list-unstyled#comments
+      = render partial: "comments/comment", collection: @article.comments.order(created_at: :desc)
+  .d-md-none.d-xl-block.col-xl-2.border-left
+    %h4=t('articles.recommendations')
+    -last_five_articles(@article.id).each do |article|
+      %h5.b.text-center=link_to article.title, article

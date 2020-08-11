@@ -7,32 +7,23 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: blog_development
-  username: etterellar
-  password: fgbn0732
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: blog_test
-  username: etterellar
-  password: fgbn0732
+
 
 production:
   <<: *default
-  database: blog_production
-  username: etterellar
-  password: <%= ENV['BLOG_DATABASE_PASSWORD'] %>
-staging:
-  <<: *default
-  database: blog_staging
-  username: etterellar
-  password: fgbn0732

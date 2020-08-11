@@ -1,0 +1,3 @@
+= simple_form_for [@article, Comment.new] do |f|
+  =f.input :content, placeholder: t('comment.add_reply')
+  = f.button :submit, 'Reply', class: "btn-info"

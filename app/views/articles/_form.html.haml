@@ -9,6 +9,20 @@
     =f.input :title
     =f.input :description
     =f.input :body
-
+    =f.input :hidden do
+      =f.check_box :hidden
+    .mt-3
+      =f.input :images do
+        = f.file_field :images, multiple: true, direct_upload: true
+      -unless (action_name.to_sym == :create)||(!@article.errors.blank?)
+        -if @article.images.attached?
+          %ul
+            -@article.images.each do |x|
+              %li
+                = link_to x.filename, controller: :articles, action: :deliver_image, id: x.id
+                = link_to  delete_image_article_url(x.id),method: :delete,
+                    data: { confirm: I18n.t('helpers.sure') } do
+                  %i.fas.fa-trash
+                %input.form-controle{value: image_paste(url_for(x))}
   .actions
-    = f.submit 'Save'
+    = f.button :submit, 'Save', class: "btn-info"

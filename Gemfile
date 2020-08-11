@@ -9,8 +9,10 @@ gem 'rails', '~> 5.2.3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-gem 'commonmarker'
 gem 'rails-i18n', '~> 5.1'
+gem 'redcarpet'
+gem 'image_processing'
+gem 'friendly_id', '~> 5.3.0'
 # Use SCSS for stylesheets
 gem 'kaminari'
 #gem 'image_processing'
@@ -25,12 +27,14 @@ gem 'haml-rails', '~> 1.0'
 gem 'jquery-rails'
 gem 'mini_racer', platforms: :ruby
 gem 'bootstrap', '~> 4.4.1'
-gem 'font-awesome-rails'
+# gem 'friendly_id', '~> 5.2.4'
+# gem 'font-awesome-rails'
+# gem 'font-awesome-sass', '~> 5.13.0'
 gem 'popper_js', '~> 1.14.5'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -51,7 +55,7 @@ gem 'jquery-validation-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'simple_form'
-gem "pundit"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Text:
+  = @notification.text
+%p
+  %b Article:
+  = @notification.article
+%p
+  %b Comment:
+  = @notification.comment
+%p
+  %b Seen:
+  = @notification.seen
+
+= link_to 'Edit', edit_notification_path(@notification)
+\|
+= link_to 'Back', notifications_path

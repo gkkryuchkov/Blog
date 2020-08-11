@@ -1,13 +1,37 @@
-%h1 Listing articles
-  
-- @articles.each do |article|
+.row.pr-2
+  .col-12.col-xl-9
+    -if current_user.try(:admin?)
+      =link_to new_article_path, class: 'btn btn-success','data-turbolinks-action'=>"replace" do
+        %i.fas.fa-plus
+        =t('articles.new')
+    -if params[:section].present? && params[:section] != ''
+      %h1.text-center=section_name(params[:section])
+    -elsif @favorite
+      %h1.text-center=t('articles.favorite_articles')
+    -elsif params['search'] && params['search'] != ''
+      %h2.text-center
+        %span=t('articles.found_by')
+        %span="'#{params['search']}'"
+    -else
+      %h1.text-center=t('articles.articles')
+    - @articles.each do |article|
 
-  %h3.b=link_to article.title, article
-  %h5= article.description
-  -#= link_to 'Show', article
-  -#= link_to 'Edit', edit_article_path(article)
-  -#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
+      %hr.hr.mb-3
+      %h3.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
+      %h5.text-center= article.description
 
--#%br
-=paginate @articles
--#= link_to 'New Article', new_article_path
+      -#= link_to 'Show', article
+      -#= link_to 'Edit', edit_article_path(article)
+      -#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
+
+    -#%br
+    =paginate @articles #TODO: сделать по центру зеленый и  без рамок
+    .d-xl-none
+      %h4.text-center=t('articles.recommendations')
+      -last_five_articles.each do |article|
+        %h5.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
+  .d-md-none.d-xl-block.col-xl-3.border-left
+    %h4.text-center=t('articles.recommendations')
+    -last_five_articles.each do |article|
+      %h5.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
+  -#= link_to 'New Article', new_article_path

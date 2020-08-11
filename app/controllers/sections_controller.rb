@@ -10,24 +10,20 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
-    authorize @section
   end
 
   # GET /sections/new
   def new
     @section = Section.new
-    authorize @section
   end
 
   # GET /sections/1/edit
   def edit
-    authorize @section
   end
 
   # POST /sections
   # POST /sections.json
   def create
-    authorize @section
     @section = Section.new(section_params)
     respond_to do |format|
       if @section.save
@@ -43,7 +39,6 @@ class SectionsController < ApplicationController
   # PATCH/PUT /sections/1
   # PATCH/PUT /sections/1.json
   def update
-    authorize @section
     respond_to do |format|
       if @section.update(section_params)
         format.html { redirect_to @section, notice: 'Section was successfully updated.' }
@@ -58,7 +53,6 @@ class SectionsController < ApplicationController
   # DELETE /sections/1
   # DELETE /sections/1.json
   def destroy
-    authorize @section
     @section.destroy
     respond_to do |format|
       format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }

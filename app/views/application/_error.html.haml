@@ -1,0 +1,7 @@
+.card
+  %h1.bg-danger.text-white.card-header
+    =defined?(status) ? status : response.status
+  .card-body
+    %h1=error
+    -#=link_to "Сменить пользователя", "https://auth.mephi.ru", class: "btn btn-primary"
+      

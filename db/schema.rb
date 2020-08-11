@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_044942) do
+ActiveRecord::Schema.define(version: 2020_03_14_065251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "about_mes", force: :cascade do |t|
+    t.text "body", default: "test", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,19 +51,57 @@ ActiveRecord::Schema.define(version: 2020_01_22_044942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "publish_date"
+    t.integer "hidden", default: 1
+    t.string "slug"
     t.index ["section_id"], name: "index_articles_on_section_id"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_profile_id"], name: "index_articles_on_user_profile_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "rating"
-    t.text "comment_body"
+    t.integer "rating", default: 0
+    t.text "content"
+    t.integer "commentable_id"
+    t.string "commentable_type"
     t.bigint "user_profile_id"
-    t.bigint "article_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.integer "edited", default: 0
+    t.integer "deleted", default: 0
     t.index ["user_profile_id"], name: "index_comments_on_user_profile_id"
+  end
+
+  create_table "favorite_articles", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "user_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_favorite_articles_on_article_id"
+    t.index ["user_profile_id"], name: "index_favorite_articles_on_user_profile_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "text"
+    t.bigint "article_id"
+    t.bigint "comment_id"
+    t.bigint "user_profile_id"
+    t.integer "seen", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["user_profile_id"], name: "index_notifications_on_user_profile_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -72,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_01_22_044942) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_user_profiles_on_slug", unique: true
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -92,6 +138,16 @@ ActiveRecord::Schema.define(version: 2020_01_22_044942) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "usr_com_ratings", force: :cascade do |t|
+    t.bigint "user_profile_id"
+    t.bigint "comment_id"
+    t.integer "rating", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_usr_com_ratings_on_comment_id"
+    t.index ["user_profile_id"], name: "index_usr_com_ratings_on_user_profile_id"
+  end
+
   create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
@@ -106,5 +162,8 @@ ActiveRecord::Schema.define(version: 2020_01_22_044942) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "sections"
   add_foreign_key "articles", "user_profiles"
+  add_foreign_key "notifications", "articles"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "user_profiles"
   add_foreign_key "user_profiles", "users"
 end
