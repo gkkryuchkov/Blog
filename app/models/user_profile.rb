@@ -11,12 +11,12 @@ class UserProfile < ApplicationRecord
   validates :user, presence: true
   validates :username, uniqueness: {case_sensitive: false}, length: {in: 5..20}
 
-  # extend FriendlyId
-  # friendly_id :username, use: :slugged
-  #
-  # before_commit :set_slug
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
+  before_save :set_slug
 
   def set_slug
-    self.slug = self.username.split.join('-')
+    self.slug = self.username.split.join('_')
   end
 end

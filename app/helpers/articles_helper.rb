@@ -13,6 +13,7 @@ module ArticlesHelper
                else
                  Article.ordering
                end
+    articles = articles.where(hidden: 0)
     if current_user
       (articles - current_user.user_profile.favorite_articles).first(5)
     else
@@ -35,4 +36,9 @@ module ArticlesHelper
                        class: 'btn btn-sm mx-1 btn-outline-secondary add_com_comment'
   end
 
+  def image_paste(url)
+    "<div style=\"text-align:center\">
+      <img src=\"#{url}\" width=20%>
+    </div>"
+  end
 end

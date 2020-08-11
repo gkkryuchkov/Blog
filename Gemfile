@@ -12,6 +12,7 @@ gem 'puma', '~> 3.11'
 gem 'rails-i18n', '~> 5.1'
 gem 'redcarpet'
 gem 'image_processing'
+gem 'friendly_id', '~> 5.3.0'
 # Use SCSS for stylesheets
 gem 'kaminari'
 #gem 'image_processing'

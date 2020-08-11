@@ -23,6 +23,6 @@
                 = link_to  delete_image_article_url(x.id),method: :delete,
                     data: { confirm: I18n.t('helpers.sure') } do
                   %i.fas.fa-trash
-                %input.form-controle{value: url_for(x)}
+                %input.form-controle{value: image_paste(url_for(x))}
   .actions
     = f.button :submit, 'Save', class: "btn-info"

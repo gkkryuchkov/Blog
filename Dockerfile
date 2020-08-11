@@ -1,6 +1,8 @@
 FROM ruby:2.6.5
 
 ENV BUNDLER_VERSION=2.1.4
+ENV GEM_HOME="/usr/local/bundle"
+ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 
 RUN apt-get update && apt-get install -y\
     apt-utils \

@@ -1,9 +1,8 @@
+.my-2
+  = link_to 'Show', @article, class: "btn btn-outline-primary"
+  = link_to 'Back', articles_path, class: "btn btn-outline-secondary"
 .card
   .card-header
     %h1 Editing article
   .card-body
     = render 'form'
-
-= link_to 'Show', @article
-\|
-= link_to 'Back', articles_path

@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
 
   def add_to_favorite
     user_profile = User.find(params['user_id']).user_profile
-    article = Article.find(params['article_id'])
+    article = Article.friendly.find(params['article_id'])
     article.favorite_users << user_profile unless article.favorite_users.include?(user_profile)
     respond_to do |format|
       format.js
@@ -96,7 +96,7 @@ class ArticlesController < ApplicationController
 
   def remove_from_favorite
     user_profile = User.find(params['user_id']).user_profile
-    Article.find(params['article_id']).favorite_users.delete(user_profile)
+    Article.friendly.find(params['article_id']).favorite_users.delete(user_profile)
     respond_to do |format|
       format.js
     end
@@ -123,7 +123,7 @@ class ArticlesController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
     end
 
   def filter(search)

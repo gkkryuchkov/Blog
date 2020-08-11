@@ -1,4 +1,4 @@
-.row
+.row.pr-2
   .col-12.col-xl-9
     -if current_user.try(:admin?)
       =link_to new_article_path, class: 'btn btn-success','data-turbolinks-action'=>"replace" do
@@ -25,9 +25,11 @@
       -#= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
 
     -#%br
-    =paginate @articles #TODO: чделать по центру зеленый и  без рамок
+    =paginate @articles #TODO: сделать по центру зеленый и  без рамок
     .d-xl-none
-      reccemendations
+      %h4.text-center=t('articles.recommendations')
+      -last_five_articles.each do |article|
+        %h5.b.text-center=link_to article.title, article,'data-turbolinks-action'=>"replace"
   .d-md-none.d-xl-block.col-xl-3.border-left
     %h4.text-center=t('articles.recommendations')
     -last_five_articles.each do |article|

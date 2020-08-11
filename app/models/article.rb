@@ -15,13 +15,12 @@ class Article < ApplicationRecord
 
   paginates_per 10
 
-  # extend FriendlyId
-  # friendly_id :title, use: :slugged
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
-  # before_commit :set_slug
-
+  before_save :set_slug
 
   def set_slug
-    self.slug = self.title.split.join('-')
+    self.slug = self.title.split.join('_')
   end
 end
