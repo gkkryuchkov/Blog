@@ -1,6 +1,12 @@
 .row
   .col-12.col-xl-10
-    %h1.text-center.my-2 About Me
+    .row
+      .col-3
+        - if @current_user.try(:admin?)
+          =link_to edit_about_me_path(@about_mes), class: 'btn btn-success' do
+            %i.fas.fa-edit
+            =t('about_me.edit')
+      %h1.text-center.my-2.col-3.offset-2 About Me
     .my-2.container
       = markdown(@about_mes.body).html_safe
     .d-xl-none

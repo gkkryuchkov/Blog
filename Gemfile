@@ -8,13 +8,13 @@ gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem "puma", ">= 3.12.4"
 gem 'rails-i18n', '~> 5.1'
 gem 'redcarpet'
 gem 'image_processing'
 gem 'friendly_id', '~> 5.3.0'
 # Use SCSS for stylesheets
-gem 'kaminari'
+gem "kaminari", ">= 1.2.1"
 #gem 'image_processing'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -41,6 +41,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem "actionpack", ">= 5.2.4.3"
+gem "activesupport", ">= 5.2.4.3"
+gem "websocket-extensions", ">= 0.1.5"
+gem "activestorage", ">= 5.2.4.3"
+gem "nokogiri", ">= 1.10.8"
+gem "actionview", ">= 5.2.4.3"
+gem "rack", ">= 2.1.4"
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'

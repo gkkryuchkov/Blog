@@ -8,12 +8,8 @@ module ArticlesHelper
   end
 
   def last_five_articles(_article_id=nil)
-    articles = if _article_id
-                 Article.ordering.where('id != ?', _article_id)
-               else
-                 Article.ordering
-               end
-    articles = articles.where(hidden: 0)
+    articles = Article.ordering.where(hidden: 0)
+    articles = articles.where('id != ?', _article_id) if _article_id
     if current_user
       (articles - current_user.user_profile.favorite_articles).first(5)
     else
